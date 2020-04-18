@@ -1,22 +1,35 @@
 {% extends "base.html" %}
 
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+{% endblock %}
+
 {% block app_content %}
     <h1>Type a query below!</h1>
     <br>
     <hr>
     <br>
-    <h2>Standard algorithm:</h2>
-    <form class="form-inline md-form mr-auto mb-4 active-purple-3 active-purple-4">
-        <input id="selector" class="form-control mr-sm-2 mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-elegant btn-rounded btn-sm my-0" type="submit">Search</button>
-    </form>
-    <br>
-    <hr>
-    <h2>New algorithm:</h2>
-    <input type="text" onkeyup="changeInput(this.value)">
 
-    <div id="result">
+    <div class="col-sm-3 col-md-6 col-lg-4">
+        <h3>Standard algorithm:</h3>
+        <form class="form-inline md-form mr-auto mb-4 active-purple-3 active-purple-4">
+            <input id="selector" class="form-control mr-sm-2 mr-3 w-75" type="text" placeholder="Regex match" aria-label="Search">
+{#            <button class="btn btn-elegant btn-rounded btn-sm my-0" type="submit">Search</button>#}
+        </form>
     </div>
+    <div class="col-sm-9 col-md-6 col-lg-8">
+        <h3>New algorithm:</h3>
+        <form class="form-inline md-form mr-auto mb-4 active-purple-3 active-purple-4">
+            <input id="dmsuggest" class="form-control mr-sm-2 mr-3 w-75" type="text" placeholder="Delete Match" aria-label="Search">
+        </form>
+        {#    <input type="text" onkeyup="changeInput(this.value)">#}
+
+        <div id="result"></div>
+    </div>
+
+
+
 {#    {% for post in posts %}#}
 {#        <div><p>{{ post.author.username }} says: <b>{{ post.body }}</b></p></div>#}
 {#    {% endfor %}#}
@@ -24,7 +37,6 @@
 
 {% block scripts %}
     {{ super() }}
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="{{url_for('.static', filename='js/query_suggest.js')}}"></script>
 
@@ -34,8 +46,25 @@
             source: availableTags
         });
 
-        $('#selector').change(function () {
-            alert($('#selector').val());
-        });
+        {#$('#selector').change(function () {#}
+        {#    alert($('#selector').val());#}
+        {# }); #}
+    </script>
+    <script>
+        $("#dmsuggest").autocomplete({
+            minLength: 2,
+            source: function (request, result) {
+                var term = request.term;
+                $.post('/suggest', {text: term}).done(function (response) {
+                    console.log(response);
+                    result (response["suggestions"]);
+                }).fail(function(){
+                    console.log("something went wrong");
+                });
+                {#$.getJSON( "/suggest", request, function( data, status, xhr ) {#}
+                {#    result( data );#}
+                {# }) #}
+            }
+        })
     </script>
 {% endblock %}
