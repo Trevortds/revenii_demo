@@ -1,33 +1,152 @@
-{% extends "base.html" %}
+{% extends "custombase.html" %}
 
 {% block styles %}
     {{ super() }}
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 {% endblock %}
 
-{% block app_content %}
-    <h1>Type a query below!</h1>
+{% block content %}
+    <h1>Fast, small, error-tolerant search query prediction</h1>
     <br>
     <hr>
     <br>
+    <div class="row">
+        <div class="col-sm-3 col-md-6 col-lg-5">
+            <p>
+                Typical methods of query prediction suffer from three major drawbacks.
+            </p>
+            <ul>
+                <li>A vocabulary limited to queries made by previous users.</li>
+                <li>Non-tolerance of spelling mistakes while the user is typing.</li>
+                <li>Or, if spelling mistakes are tolerated, false positives words appear, where the user's query
+                    appears in the middle of a word, not at the beginning as intended.</li>
+            </ul>
 
-    <div class="col-sm-3 col-md-6 col-lg-4">
-        <h3>Standard algorithm:</h3>
-        <form class="form-inline md-form mr-auto mb-4 active-purple-3 active-purple-4">
-            <input id="selector" class="form-control mr-sm-2 mr-3 w-75" type="text" placeholder="Regex match" aria-label="Search">
-{#            <button class="btn btn-elegant btn-rounded btn-sm my-0" type="submit">Search</button>#}
-        </form>
+        </div>
+        <div class="col-sm-9 col-md-6 col-lg-7">
+            <p>
+                Revenii (Latin: I return) solves all of these problems:
+            </p>
+            <ul>
+                <li>Semantically-aware entity extraction automatically derives keywords that your users want to find,
+                    without needing to reference old queries </li>
+                <li>Revenii allows you to configure the number of spelling mistakes a user can make while typing</li>
+                <li>Revenii only displays words that a person could have feasibly intended to type given what they
+                    actually have typed. No more "tin" turning up results for "continental tires"</li>
+            </ul>
+
+        </div>
     </div>
-    <div class="col-sm-9 col-md-6 col-lg-8">
-        <h3>New algorithm:</h3>
-        <form class="form-inline md-form mr-auto mb-4 active-purple-3 active-purple-4">
-            <input id="dmsuggest" class="form-control mr-sm-2 mr-3 w-75" type="text" placeholder="Delete Match" aria-label="Search">
-        </form>
-        {#    <input type="text" onkeyup="changeInput(this.value)">#}
+    <div class="row">
 
-        <div id="result"></div>
+        <div class="col-sm-3 col-md-6 col-lg-5">
+            <h3>Standard predictive search:</h3>
+            <form class="form-inline md-form mr-auto mb-4 active-purple-3 active-purple-4">
+                <input id="selector" class="form-control mr-sm-2 mr-3 w-75" type="text" placeholder="Regex match" aria-label="Search">
+                {#            <button class="btn btn-elegant btn-rounded btn-sm my-0" type="submit">Search</button>#}
+            </form>
+        </div>
+        <div class="col-sm-9 col-md-6 col-lg-7">
+            <h3>Revenii search:</h3>
+            <form class="form-inline md-form mr-auto mb-4 active-purple-3 active-purple-4">
+                <input id="dmsuggest" class="form-control mr-sm-2 mr-3 w-75" type="text" placeholder="Delete Match" aria-label="Search">
+            </form>
+            {#    <input type="text" onkeyup="changeInput(this.value)">#}
+
+            <div id="result"></div>
+        </div>
     </div>
 
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <div class="row">
+                <div class="col-12"><hr></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="static/img/fake_products/gettyimages-459761948.jpg.webp" class="card-img-top" alt="product title">
+                        <div class="card-body">
+                            <h5 class="card-title">Title</h5>
+                            <p class="card-text">Product Description</p>
+                            <p class="card-text">Product Price</p>
+                    {#        <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">View</a>#}
+                            <a href="#" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                  {#    <a href="{{ obj.get_absolute_url }}">{{ obj.title }} </a> <br>#}
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="static/img/fake_products/gettyimages-459761948.jpg.webp" class="card-img-top" alt="product title">
+                        <div class="card-body">
+                            <h5 class="card-title">Title</h5>
+                            <p class="card-text">Product Description</p>
+                            <p class="card-text">Product Price</p>
+                    {#        <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">View</a>#}
+                            <a href="#" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                  {#    <a href="{{ obj.get_absolute_url }}">{{ obj.title }} </a> <br>#}
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="static/img/fake_products/gettyimages-459761948.jpg.webp" class="card-img-top" alt="product title">
+                        <div class="card-body">
+                            <h5 class="card-title">Title</h5>
+                            <p class="card-text">Product Description</p>
+                            <p class="card-text">Product Price</p>
+                    {#        <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">View</a>#}
+                            <a href="#" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                  {#    <a href="{{ obj.get_absolute_url }}">{{ obj.title }} </a> <br>#}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12"><hr></div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="static/img/fake_products/gettyimages-459761948.jpg.webp" class="card-img-top" alt="product title">
+                        <div class="card-body">
+                            <h5 class="card-title">Title</h5>
+                            <p class="card-text">Product Description</p>
+                            <p class="card-text">Product Price</p>
+                    {#        <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">View</a>#}
+                            <a href="#" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                  {#    <a href="{{ obj.get_absolute_url }}">{{ obj.title }} </a> <br>#}
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="static/img/fake_products/gettyimages-459761948.jpg.webp" class="card-img-top" alt="product title">
+                        <div class="card-body">
+                            <h5 class="card-title">Title</h5>
+                            <p class="card-text">Product Description</p>
+                            <p class="card-text">Product Price</p>
+                    {#        <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">View</a>#}
+                            <a href="#" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                  {#    <a href="{{ obj.get_absolute_url }}">{{ obj.title }} </a> <br>#}
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="static/img/fake_products/gettyimages-459761948.jpg.webp" class="card-img-top" alt="product title">
+                        <div class="card-body">
+                            <h5 class="card-title">Title</h5>
+                            <p class="card-text">Product Description</p>
+                            <p class="card-text">Product Price</p>
+                    {#        <a href="{{ instance.get_absolute_url }}" class="btn btn-primary">View</a>#}
+                            <a href="#" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                  {#    <a href="{{ obj.get_absolute_url }}">{{ obj.title }} </a> <br>#}
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 {#    {% for post in posts %}#}

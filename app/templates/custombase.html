@@ -1,0 +1,62 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>{% block title %}{% if title %}{{ title }}{% else %}ReveniiDemo{% endif %}{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/bootstrap.theme.min.css" type="text/css">
+    {#<link rel="stylesheet" href="{% static "css/custom-navbar.css" %}" >#}
+    <!-- Confirm CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% block styles %}
+    {% endblock %}
+</head>
+<body>
+
+{% include "navbar.html" %}
+
+<div class="container">
+{% block content %}
+{% endblock %}
+</div>
+</body>
+{#{% include "base/js.html" %}#}
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!-- Stripe JS -->
+{#<script src="https://js.stripe.com/v3/"></script>#}
+
+{#<!-- less js -->#}
+{# <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" ></script>#}
+
+<!-- Confirm js -->
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>#}
+
+<!-- jsrender js -->
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/jsrender/1.0.6/jsrender.min.js"></script>#}
+<!-- Cookies js -->
+{#<script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>#}
+
+{#<link rel="stylesheet" href="{% static "css/custom-navbar.css" %}" >#}
+{#<script src="{% static "js/csrf.js" %}"></script>#}
+
+{#{% include "base/js_templates.html" %}#}
+
+{#<script src="{% static "js/ecommerce.billing.js" %}"></script>#}
+
+{% block scripts %}
+{% endblock %}
+</body>
+</html>
